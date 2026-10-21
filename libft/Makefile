@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnauke <rnauke@student.42.fr>              +#+  +:+       +#+         #
+#    By: rnauke <rnauke@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 14:34:21 by rnauke            #+#    #+#              #
-#    Updated: 2023/03/30 16:45:56 by rnauke           ###   ########.fr        #
+#    Updated: 2025/03/14 16:40:03 by rnauke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,37 +21,25 @@ OBJECTS = $(SOURCES:.c=.o)
 SOURCES_BONUS = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
 OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 
-PRINTF_DIR = ft_printf/
-PRINTF_SOURCES = ft_printf_address.c ft_printf_char.c ft_printf_decimal.c ft_printf_hex.c ft_printf_itoa.c ft_printf_itoah.c ft_printf_main.c ft_printf_percent.c ft_printf_string.c ft_printf_ulltoah.c ft_printf_unsigned.c
-PRINTF_OBJECTS = $(PRINTF_SOURCES:.c=.o)
-
-PRINTF_OBJECT_DIR = $(addprefix $(PRINTF_DIR), $(PRINTF_OBJECTS))
-PRINTF_SOURCES_DIR = $(addprefix $(PRINTF_DIR), $(PRINTF_SOURCES))
-
-all: ${NAME}
+all: bonus
 
 bonus: $(NAME) $(OBJECTS_BONUS)
 
-${NAME}: $(PRINTF_OBJECT_DIR)
-	gcc -c $(FLAGS) $(SOURCES) 
-	ar -vrcs ${NAME} $(OBJECTS) $(PRINTF_OBJECT_DIR)
+${NAME}:
+	cc -c $(SOURCES) $(FLAGS)
+	ar -vcrs ${NAME} $(OBJECTS)
 
 $(OBJECTS_BONUS):
-	gcc -c  $(FLAGS) $(SOURCES_BONUS)
-	ar -vrcs ${NAME} $(OBJECTS_BONUS)
-
-$(PRINTF_DIR)/%.o:
-	gcc -c $(addprefix $(PRINTF_DIR), $(PRINTF_SOURCES)) $(FLAGS)
+	cc -c $(SOURCES_BONUS) $(FLAGS)
+	ar -vcrs ${NAME} $(OBJECTS_BONUS)
 
 clean:
 	rm -f $(OBJECTS)
 	rm -f $(OBJECTS_BONUS)
-	rm -f $(PRINTF_OBJECT_DIR)
 
 fclean:
 	rm -f $(OBJECTS)
 	rm -f $(OBJECTS_BONUS)
-	rm -f $(PRINTF_OBJECT_DIR)
 	rm -f $(NAME)
 
 .PHONY: re fclean clean
