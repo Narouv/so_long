@@ -35,7 +35,6 @@ They are scaled to 64x64 pixels at load time.
 
 - MLX42 documentation: https://github.com/codam-coding-college/MLX42/tree/master/docs
 - Flood fill / BFS: https://en.wikipedia.org/wiki/Flood_fill
-- (add the tutorials and articles you actually used)
 
 ### Use of AI
 
